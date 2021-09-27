@@ -1,4 +1,7 @@
 .idea/
 *.o
 *.out
+*.dSYM
 .DS_Store
+
+03_TerminalProject/Shower
