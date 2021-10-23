@@ -5,7 +5,7 @@ typedef struct range {
     int start;
     int stop;
     int step;
-    int iter;
+    int value;
 } range;
 
 void argparse(int argc, char *argv[], int *start, int *stop, int *step) {
@@ -29,20 +29,19 @@ void argparse(int argc, char *argv[], int *start, int *stop, int *step) {
 }
 
 int range_get(range *I) {
-    return I->start + I->iter * I->step;
+    return I->value;
 }
 
 void range_init(range *I) {
-    I->iter = 0;
+    I->value = I->start;
 }
 
 int range_run(range *I) {
-    int value = range_get(I);
-    return (I->step > 0) ? (value < I->stop) : (value > I->stop);
+    return (I->step > 0) ? (I->value < I->stop) : (I->value > I->stop);
 }
 
 void range_next(range *I) {
-    I->iter += 1;
+    I->value += I->step;
 }
 
 int main(int argc, char *argv[]) {
