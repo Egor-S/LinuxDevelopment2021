@@ -13,6 +13,19 @@ enum {
 } ExitCode;
 
 
+int cleanup(FILE *infile, FILE *outfile, const char *to_delete) {
+	if (infile != NULL) {
+		fclose(infile);
+		if (outfile != NULL) {
+			fclose(outfile);
+			if (unlink(to_delete) != 0)
+				return errno;
+		}
+	}
+	return 0;
+}
+
+
 int main(int argc, char *argv[]) {
 	if (argc != 3)
 		FAIL(ARGS_ERROR, "Missing arguments\nUsage: %s infile outfile\n", argv[0]);
@@ -21,22 +34,31 @@ int main(int argc, char *argv[]) {
 	FILE *outfile;
 	char buffer[BUFFER_SIZE];
 	size_t n_read, n_write;
+	int err;
 	
 	if ((infile = fopen(argv[1], "r")) == NULL)
 		FAIL(errno, "Can't open '%s' to read: %s\n", argv[1], strerror(errno));
-	if ((outfile = fopen(argv[2], "w")) == NULL)
-		FAIL(errno, "Can't open '%s' to write: %s\n", argv[2], strerror(errno));  // todo close infile
+	if ((outfile = fopen(argv[2], "w")) == NULL) {
+		err = errno;
+		cleanup(infile, outfile, argv[2]);
+		FAIL(err, "Can't open '%s' to write: %s\n", argv[2], strerror(err));
+	}
 
 	while ((n_read = fread(buffer, 1, BUFFER_SIZE, infile)) > 0)
-		if ((n_write = fwrite(buffer, 1, n_read, outfile)) != n_read)
-			FAIL(errno, "Write error: %s\n", strerror(errno));
+		if ((n_write = fwrite(buffer, 1, n_read, outfile)) != n_read) {
+			err = errno;
+			cleanup(infile, outfile, argv[2]);
+			FAIL(err, "Write error: %s\n", strerror(err));
+		}
 
-	if (ferror(infile))
-		FAIL(errno, "Read error: %s\n", strerror(errno));
+	if (ferror(infile)) {
+		err = errno;
+		cleanup(infile, outfile, argv[2]);
+		FAIL(err, "Read error: %s\n", strerror(err));
+	}
 
-	fclose(infile);
-	fclose(outfile);
-	unlink(argv[1]);
+	if ((err = cleanup(infile, outfile, argv[1])) != 0)
+		FAIL(err, "Can't delete file:\n", strerror(err));
 
 	return OK;
 }
