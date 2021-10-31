@@ -43,9 +43,10 @@ int main(int argc, char *argv[]) {
 		cleanup(infile, outfile, argv[2]);
 		FAIL(err, "Can't open '%s' to write: %s\n", argv[2], strerror(err));
 	}
+	int out_fd = fileno(outfile);  // fwrite don't raise any errors :(
 
 	while ((n_read = fread(buffer, 1, BUFFER_SIZE, infile)) > 0)
-		if ((n_write = fwrite(buffer, 1, n_read, outfile)) != n_read) {
+		if ((n_write = write(out_fd, buffer, n_read)) != n_read) {
 			err = errno;
 			cleanup(infile, outfile, argv[2]);
 			FAIL(err, "Write error: %s\n", strerror(err));

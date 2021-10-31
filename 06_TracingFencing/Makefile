@@ -22,8 +22,11 @@ test: clean move unlink_trick.so
 	@echo "OK: success move file"
 
 	@echo "qwerty test" > tmp/in-PROTECT-file.txt
-	@(LD_PRELOAD=./unlink_trick.so ./move tmp/in-PROTECT-file.txt tmp/outfile2.txt ${DUMP} || ([[ $$? == 13 ]] || exit 1)) && [ -f tmp/in-PROTECT-file.txt ] && [ -f tmp/outfile2.txt ] 
+	@(LD_PRELOAD=./unlink_trick.so ./move tmp/in-PROTECT-file.txt tmp/outfile2.txt ${DUMP} || ([[ $$? == 13 ]] || exit 1)) && [ -f tmp/in-PROTECT-file.txt ] && [ -f tmp/outfile2.txt ]
 	@echo "OK: can't delete PROTECT file"
+
+	@(strace -e fault=write:error=EIO ./move tmp/in-PROTECT-file.txt tmp/outfile3.txt ${DUMP} || [[ $$? == 5 ]]) && [ -f tmp/in-PROTECT-file.txt ] && [ ! -f tmp/outfile3.txt ]
+	@echo "OK: write fails (strace injected EIO)"
 
 	@echo "All OK: tests passed"
 
