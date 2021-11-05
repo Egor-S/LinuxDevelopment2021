@@ -9,6 +9,12 @@
 #ifdef HAVE_LIBREADLINE
 #include <readline/readline.h>
 #include <readline/history.h>
+
+char *free_readline(char *line) {
+	if (line)
+		free(line);
+	return readline(NULL);
+}
 #endif 
 
 
@@ -41,9 +47,9 @@ int main(int argc, char *argv[]) {
 	size_t len = 0;
 	ssize_t n_read;
 	while ((n_read = getline(&line, &len, stdin)) != -1) {
-		line[len - 1] = '\0';  // trim \n
+		line[n_read - 1] = '\0';  // trim \n
 	#else
-	while ((line = readline(NULL))) {
+	while ((line = free_readline(line))) {
 		if (*line)
 			add_history(line);
 	#endif
@@ -83,6 +89,7 @@ int main(int argc, char *argv[]) {
 		printf("%s\n", output);
 	}
 	
-	free(line);
+	if (line)
+		free(line);
 	return 0;
 }
