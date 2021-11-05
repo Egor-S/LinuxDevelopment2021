@@ -11,14 +11,16 @@ AC_PROG_CC
 AM_INIT_AUTOMAKE
 
 # Checks for libraries.
-AC_CHECK_LIB([librhash], [rhash_library_init], [
+AC_CHECK_LIB([rhash], [rhash_library_init], [], [
 	AC_MSG_ERROR([Unable to find librhash])
 ])
+AC_CHECK_LIB([readline], [readline])
 
 # Checks for header files.
-AC_CHECK_HEADER([rhash.h], [], [
+AC_CHECK_HEADER([rhash.h], [], [], [
 	AC_MSG_ERROR([Unable to find rhash.h])
 ])
+AC_CHECK_HEADER([readline/readline.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
