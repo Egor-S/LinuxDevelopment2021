@@ -1,0 +1,83 @@
+# Russian translations for guess package.
+# Copyright (C) 2021 THE guess'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the guess package.
+# Egor Sklyarov <egor.sklyarov.ru@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: guess 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-16 22:07+0300\n"
+"PO-Revision-Date: 2021-12-04 17:42+0300\n"
+"Last-Translator: Egor Sklyarov <egor.sklyarov.ru@gmail.com>\n"
+"Language-Team: Russian <gnu@d07.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: guess.c:42
+msgid "use Roman numerals"
+msgstr "использовать римские цифры"
+
+#: guess.c:43
+msgid "show this message"
+msgstr "показать это сообщение"
+
+#: guess.c:59
+#, c-format
+msgid "Unknown option. See --help\n"
+msgstr "Неизвестная опция. Обратитесь к --help\n"
+
+#: guess.c:69
+#, c-format
+msgid "Think of a number from 1 to 100. Press <enter> when ready.\n"
+msgstr "Придумайте число от 1 до 100. Нажмите <enter>, когда будете готовы.\n"
+
+#: guess.c:71
+#, c-format
+msgid "Think of a number from I to L. Press <enter> when ready.\n"
+msgstr "Придумайте число от I до L. Нажмите <enter>, когда будете готовы.\n"
+
+#: guess.c:73
+#, c-format
+msgid "Allowed answers: lower, right, greater\n"
+msgstr "Допустимые ответы: меньше, верно, больше\n"
+
+#: guess.c:77
+#, c-format
+msgid "Conflicting answers, abort\n"
+msgstr "Противоречивые ответы, выход\n"
+
+#: guess.c:81
+#, c-format
+msgid "My guess is %d. Is it right? "
+msgstr "Моя догадка %d. Верно? "
+
+#: guess.c:83
+#, c-format
+msgid "My guess is %s. Is it right? "
+msgstr "Моя догадка %s. Верно? "
+
+#: guess.c:85
+msgid "right"
+msgstr "верно"
+
+#: guess.c:85
+msgid "yes"
+msgstr "да"
+
+#: guess.c:88
+msgid "lower"
+msgstr "меньше"
+
+#: guess.c:90
+msgid "greater"
+msgstr "больше"
+
+#: guess.c:93
+#, c-format
+msgid "Can't understand you, please repeat\n"
+msgstr "Ответ не распознан, попробуйте снова\n"
