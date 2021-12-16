@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Egor Sklyarov <egor.sklyarov.ru@gmail.com>, 2021.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: guess 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-16 18:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Egor Sklyarov <egor.sklyarov.ru@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: guess.c:27
+msgid "use Roman numerals"
+msgstr ""
+
+#: guess.c:28
+msgid "show this message"
+msgstr ""
+
+#: guess.c:44
+#, c-format
+msgid "Unknown option. See --help\n"
+msgstr ""
+
+#: guess.c:54
+#, c-format
+msgid "Think of a number from 1 to 100. Press <enter> when ready.\n"
+msgstr ""
+
+#: guess.c:56
+#, c-format
+msgid "Think of a number from I to L. Press <enter> when ready.\n"
+msgstr ""
+
+#: guess.c:58
+#, c-format
+msgid "Allowed answers: lower, right, greater\n"
+msgstr ""
+
+#: guess.c:62
+#, c-format
+msgid "Conflicting answers, abort\n"
+msgstr ""
+
+#: guess.c:66
+#, c-format
+msgid "My guess is %d. Is it right? "
+msgstr ""
+
+#: guess.c:68
+#, c-format
+msgid "My guess is %s. Is it right? "
+msgstr ""
+
+#. todo bufsize
+#: guess.c:70
+msgid "right"
+msgstr ""
+
+#: guess.c:70
+msgid "yes"
+msgstr ""
+
+#: guess.c:73
+msgid "lower"
+msgstr ""
+
+#: guess.c:75
+msgid "greater"
+msgstr ""
+
+#: guess.c:78
+#, c-format
+msgid "Can't understand you, please repeat\n"
+msgstr ""
